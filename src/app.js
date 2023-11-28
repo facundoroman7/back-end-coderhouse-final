@@ -1,8 +1,6 @@
 import express from 'express';
-import ProductManeger from './componentes.clases/ProductManeger.js';
-
-
-const product = new ProductManeger();
+import routerProd from "./router/product.routes.js"
+import cartRouter from "./router/cart.routes.js"
 
 const app = express();
 
@@ -12,35 +10,9 @@ app.use(express.json())
 
 app.use(express.urlencoded({ extended : true}))
 
-app.get("/products" , async (req, res) => {
-    
-    res.send(await product.getProducts())
+app.use("/api/products", routerProd)
 
-} )
-
-
-app.get("/products/:id" , async (req, res) => {
-    let id = parseInt(req.params.id)
-    res.send(await product.getProductsById(id))
-
-} )
-
-app.post("/products", async (req, res) =>{
-    let newproduct = req.body
-    res.send(await product.addProductos(newproduct))
-})
-
-app.put("/products/:id", async ( req, res) => {
-    let id = parseInt(req.params.id)
-    let upDateProd = req.body
-    res.send(await product.upDateProd(id, upDateProd))
-})
-
-
-app.delete("/products/:id", async ( req, res) =>{
-    let id = parseInt(req.params.id)
-    res.send(await product.deleteProd(id))
-})
+app.use("/api/cart", cartRouter)
 
 app.listen(Port, () =>{
     console.log(`servidor en el puerto ${Port}`);
