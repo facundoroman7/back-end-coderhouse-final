@@ -4,7 +4,7 @@ import cartRouter from "./router/cart.router.js"
 import { engine } from 'express-handlebars';
 import __dirname from './utils.js';
 import * as path from "path"
-import ProductManeger from './componentes.clases/ProductManeger.js';
+// import ProductManeger from './componentes.clases/ProductManeger.js';
 import { allowInsecurePrototypeAccess } from "@handlebars/allow-prototype-access";
 import viewsRouter from "../src/router/views.router.js"
 import { env } from "../src/env/env.js";
@@ -18,7 +18,7 @@ const Port = 8080
 
 
 
-const product = new ProductManeger();
+// const product = new ProductManeger();
 
 app.use(express.json())
 
